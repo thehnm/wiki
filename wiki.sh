@@ -33,7 +33,7 @@ linkfiles() {
     lfile="$lid".md
     ltitle=$(head -1q "$dir/$lfile" | cut -d " " -f2-)
 
-    [ -z "$(grep '## Links' "$dir/$lfile")" ] && printf "\n## Links\n" >> "$dir/$currfile"
+    [ -z "$(grep '## Links' "$dir/$currfile")" ] && printf "\n## Links\n" >> "$dir/$currfile"
     printf "%s\n" "- $ltitle" >> "$dir/$currfile"
 
     [ -z "$(grep '## Links' "$dir/$lfile")" ] && printf "\n## Links\n" >> "$dir/$lfile"
