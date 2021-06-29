@@ -24,7 +24,6 @@ listfiles() {
     currid=$(printf "$sel" | cut -d " " -f2)
     currfile="$currid".md
     currtitle=$(head -1q "$dir/$currfile" | cut -d " " -f2-)
-    # $EDITOR "$dir/$currfile"
 }
 
 linkfiles() {
@@ -47,7 +46,6 @@ followlinks() {
     [ -z "$currtitle" ] && return
     currid=$(printf $currtitle | cut -d " " -f1)
     currfile="$currid".md
-    # $EDITOR $dir/$currfile
 }
 
 wronginput() {
