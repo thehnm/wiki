@@ -9,12 +9,12 @@ fzfcmd() {
 
 printoptions() {
     printf "%s\n\n" "The following options are available"
-    [ -n "$currid" ] && printf "%s\n" "- edit current note [e]"
-    [ -n "$currid" ] && printf "%s\n" "- link current note with another note [l]"
-    [ -n "$currid" ] && printf "%s\n" "- display links for current note [f]"
-    printf "%s\n" "- list all files [a]"
-    printf "%s\n" "- create new file [n]"
-    printf "%s\n" "- quit [q]"
+    [ -n "$currid" ] && printf "%s\n" "- [e] edit current note"
+    [ -n "$currid" ] && printf "%s\n" "- [l] link current note with another note"
+    [ -n "$currid" ] && printf "%s\n" "- [f] display links for current note"
+    printf "%s\n" "- [a] list all files"
+    printf "%s\n" "- [n] create new file"
+    printf "%s\n" "- [q] quit"
     printf "\n"
 }
 
