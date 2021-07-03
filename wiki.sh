@@ -4,7 +4,7 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 fzfcmd() {
-    fzf --preview 'bat --style=numbers --color=always $(echo {} | cut -d " " -f2).md'
+    fzf --preview 'bat --style=numbers --color=always $(echo {} | cut -d " " -f1).md'
 }
 
 printoptions() {
@@ -19,9 +19,9 @@ printoptions() {
 }
 
 listfiles() {
-    sel=$(head -1q "$dir"/* | fzfcmd)
+    sel=$(head -1q "$dir"/* | cut -d " " -f2- | fzfcmd)
     [ -z "$sel" ] && return
-    currid=$(printf "$sel" | cut -d " " -f2)
+    currid=$(printf "$sel" | cut -d " " -f1)
     currfile="$currid".md
     currtitle=$(head -1q "$dir/$currfile" | cut -d " " -f2-)
 }
