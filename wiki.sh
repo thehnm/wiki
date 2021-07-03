@@ -42,7 +42,7 @@ linkfiles() {
 
 followlinks() {
     links=$(sed -e '1,/## Links/d' $dir/$currfile | sed 's/- //g')
-    currtitle=$(printf "$links" | fzf --preview 'bat --style=numbers --color=always $(echo {} | cut -d " " -f1).md')
+    currtitle=$(printf "$links" | fzfcmd)
     [ -z "$currtitle" ] && return
     currid=$(printf $currtitle | cut -d " " -f1)
     currfile="$currid".md
