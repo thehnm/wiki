@@ -63,12 +63,11 @@ wronginput() {
 }
 
 newfile() {
-    fileid=$(date +'%y%m%d%H%M%S')
-    touch $dir/"$fileid".md
-    echo "# $fileid - TITLE" > $dir/"$fileid".md
-    $EDITOR $dir/"$fileid.md"
-    currfile="$fileid".md
-    currid=$fileid
+    currid=$(date +'%y%m%d%H%M%S')
+    touch "$dir/$currid".md
+    echo "# $currid - TITLE" > "$dir/$currid".md
+    $EDITOR "$dir/$currid.md"
+    currfile="$currid".md
 }
 
 menu() {
