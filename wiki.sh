@@ -4,7 +4,8 @@ bold=$(tput bold)
 normal=$(tput sgr0)
 
 fzfcmd() {
-    fzf --preview 'bat --style=numbers --color=always $(echo {} | cut -d " " -f1).md'
+    str='bat --style=numbers --color=always $(echo '"$1/"'{} | cut -d " " -f1).md'
+    fzf --preview "$str"
 }
 
 printoptions() {
@@ -19,7 +20,7 @@ printoptions() {
 }
 
 listfiles() {
-    sel=$(head -1q "$dir"/* | cut -d " " -f2- | fzfcmd)
+    sel=$(head -1q "$dir"/* | cut -d " " -f2- | fzfcmd "$dir")
     [ -z "$sel" ] && return
     currid=$(printf "$sel" | cut -d " " -f1)
     currfile="$currid".md
@@ -27,7 +28,7 @@ listfiles() {
 }
 
 linkfiles() {
-    lsel=$(head -1q "$dir"/* | fzfcmd)
+    lsel=$(head -1q "$dir"/* | fzfcmd "$dir")
     [ -z "$lsel" ] && return
     lid=$(printf "$lsel" | cut -d " " -f2)
     lfile="$lid".md
@@ -42,7 +43,7 @@ linkfiles() {
 
 followlinks() {
     links=$(sed -e '1,/## Links/d' $dir/$currfile | sed 's/- //g')
-    currtitle=$(printf "$links" | fzfcmd)
+    currtitle=$(printf "$links" | fzfcmd "$dir")
     [ -z "$currtitle" ] && return
     currid=$(printf $currtitle | cut -d " " -f1)
     currfile="$currid".md
