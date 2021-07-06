@@ -17,6 +17,7 @@ printoptions() {
     [ -n "$currid" ] && printf "%s\n" "- $(bf [e]) edit current note"
     [ -n "$currid" ] && printf "%s\n" "- $(bf [l]) link current note with another note"
     [ -n "$currid" ] && printf "%s\n" "- $(bf [f]) display links for current note"
+    [ -n "$currid" ] && printf "%s\n" "- $(bf [d]) delete current note"
     printf "%s\n" "- $(bf [a]) list all files"
     printf "%s\n" "- $(bf [n]) create new file"
     printf "%s\n" "- $(bf [q]) quit"
@@ -84,6 +85,7 @@ menu() {
         e) [ -z "$currid" ] && wronginput "No file currently selected!" || $EDITOR "$dir/$currfile";;
         l) linkfiles;;
         f) followlinks;;
+        d) rm "$dir/$currfile" && listfiles;;
         a) listfiles;;
         n) newfile;;
         q) exit;;
