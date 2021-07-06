@@ -3,6 +3,10 @@
 bold=$(tput bold)
 normal=$(tput sgr0)
 
+bf() {
+    printf "$bold$1$normal"
+}
+
 fzfcmd() {
     str='bat --style=numbers --color=always $(echo '"$1/"'{} | cut -d " " -f1).md'
     fzf --preview "$str"
@@ -10,12 +14,12 @@ fzfcmd() {
 
 printoptions() {
     printf "%s\n\n" "The following options are available"
-    [ -n "$currid" ] && printf "%s\n" "- [e] edit current note"
-    [ -n "$currid" ] && printf "%s\n" "- [l] link current note with another note"
-    [ -n "$currid" ] && printf "%s\n" "- [f] display links for current note"
-    printf "%s\n" "- [a] list all files"
-    printf "%s\n" "- [n] create new file"
-    printf "%s\n" "- [q] quit"
+    [ -n "$currid" ] && printf "%s\n" "- $(bf [e]) edit current note"
+    [ -n "$currid" ] && printf "%s\n" "- $(bf [l]) link current note with another note"
+    [ -n "$currid" ] && printf "%s\n" "- $(bf [f]) display links for current note"
+    printf "%s\n" "- $(bf [a]) list all files"
+    printf "%s\n" "- $(bf [n]) create new file"
+    printf "%s\n" "- $(bf [q]) quit"
     printf "\n"
 }
 
