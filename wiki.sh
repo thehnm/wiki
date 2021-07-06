@@ -8,7 +8,7 @@ bf() {
 }
 
 fzfcmd() {
-    str='bat --style=numbers --color=always $(echo '"$1/"'{} | cut -d " " -f1).md'
+    str='bat --style=numbers --color=always $(printf "%s" '"$1/"'{} | cut -d " " -f1).md'
     fzf --preview "$str"
 }
 
@@ -70,7 +70,7 @@ wronginput() {
 newfile() {
     currid=$(date +'%y%m%d%H%M%S')
     touch "$dir/$currid".md
-    echo "# $currid - TITLE" > "$dir/$currid".md
+    printf "%s" "# $currid - TITLE" > "$dir/$currid".md
     $EDITOR "$dir/$currid.md"
     currfile="$currid".md
 }
