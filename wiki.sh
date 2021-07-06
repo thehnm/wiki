@@ -67,6 +67,10 @@ wronginput() {
     done
 }
 
+emptyfilecheck() {
+    [ -z "$currid" ] && wronginput "No file currently selected!"
+}
+
 newfile() {
     currid=$(date +'%y%m%d%H%M%S')
     touch "$dir/$currid".md
@@ -82,10 +86,10 @@ menu() {
     printoptions
     read -p "Enter your choice: " choice
     case $choice in
-        e) [ -z "$currid" ] && wronginput "No file currently selected!" || $EDITOR "$dir/$currfile";;
-        l) linkfiles;;
-        f) followlinks;;
-        d) rm "$dir/$currfile" && listfiles;;
+        e) emptyfilecheck || $EDITOR "$dir/$currfile";;
+        l) emptyfilecheck || linkfiles;;
+        f) emptyfilecheck || followlinks;;
+        d) emptyfilecheck || listfiles;;
         a) listfiles;;
         n) newfile;;
         q) exit;;
