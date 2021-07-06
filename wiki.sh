@@ -28,9 +28,9 @@ listfiles() {
 }
 
 linkfiles() {
-    lsel=$(head -1q "$dir"/* | fzfcmd "$dir")
+    lsel=$(head -1q "$dir"/* | cut -d " " -f2- | fzfcmd "$dir")
     [ -z "$lsel" ] && return
-    lid=$(printf "$lsel" | cut -d " " -f2)
+    lid=$(printf "$lsel" | cut -d " " -f1)
     lfile="$lid".md
     ltitle=$(head -1q "$dir/$lfile" | cut -d " " -f2-)
 
