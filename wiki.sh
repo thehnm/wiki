@@ -94,7 +94,7 @@ menu() {
         e) emptyfilecheck || $EDITOR "$dir/$currfile";;
         l) emptyfilecheck || linkfiles;;
         f) emptyfilecheck || followlinks;;
-        d) emptyfilecheck || deletenote && listfiles;;
+        d) emptyfilecheck || (deletenote && listfiles);;
         a) listfiles;;
         n) newfile;;
         q) exit;;
