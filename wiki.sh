@@ -79,6 +79,11 @@ newfile() {
     currfile="$currid".md
 }
 
+deletenote() {
+    rm "$dir/$currfile"
+    unset currid currfile currtitle
+}
+
 menu() {
     clear
     [ -n "$currid" ] && currtitle=$(head -1q "$dir/$currfile" | cut -d " " -f2-) && bat -p "$dir/$currfile"
@@ -89,7 +94,7 @@ menu() {
         e) emptyfilecheck || $EDITOR "$dir/$currfile";;
         l) emptyfilecheck || linkfiles;;
         f) emptyfilecheck || followlinks;;
-        d) emptyfilecheck || listfiles;;
+        d) emptyfilecheck || deletenote && listfiles;;
         a) listfiles;;
         n) newfile;;
         q) exit;;
