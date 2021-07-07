@@ -13,7 +13,7 @@ fzfcmd() {
 }
 
 printoptions() {
-    printf "%s\n\n" "The following options are available"
+    printf "%s\n\n" "The following options are available:"
     [ -n "$currid" ] && printf "%s\n" "- $(bf [e]) edit current note"
     [ -n "$currid" ] && printf "%s\n" "- $(bf [l]) link current note with another note"
     [ -n "$currid" ] && printf "%s\n" "- $(bf [f]) display links for current note"
