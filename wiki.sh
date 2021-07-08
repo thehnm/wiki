@@ -63,11 +63,7 @@ wronginput() {
     printf "Press any key to continue\n"
     while true; do
         read -t 3 -n 1
-        if [ $? = 0 ] ; then
-            return ;
-        else
-            printf "Waiting for the keypress\n"
-        fi
+        [ $? = 0 ] && return || printf "Waiting for the keypress\n"
     done
 }
 
