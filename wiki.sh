@@ -12,6 +12,10 @@ fzfcmd() {
     fzf --preview "$str"
 }
 
+list() {
+    head -1q "$dir"/* | cut -d " " -f2- | fzfcmd "$dir"
+}
+
 printoptions() {
     printf "%s\n\n" "The following options are available:"
     [ -n "$currid" ] && printf "%s\n" "- $(bf [e]) edit current note"
@@ -25,7 +29,7 @@ printoptions() {
 }
 
 listfiles() {
-    sel=$(head -1q "$dir"/* | cut -d " " -f2- | fzfcmd "$dir")
+    sel=$(list)
     [ -z "$sel" ] && return
     currid=$(printf "$sel" | cut -d " " -f1)
     currfile="$currid".md
@@ -33,7 +37,7 @@ listfiles() {
 }
 
 linkfiles() {
-    lsel=$(head -1q "$dir"/* | cut -d " " -f2- | fzfcmd "$dir")
+    lsel=$(list)
     [ -z "$lsel" ] && return
     lid=$(printf "$lsel" | cut -d " " -f1)
     lfile="$lid".md
