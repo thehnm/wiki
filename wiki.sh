@@ -28,7 +28,7 @@ printoptions() {
     printf "\n"
 }
 
-listfiles() {
+selectfile() {
     sel=$(list)
     [ -z "$sel" ] && return
     currid=$(printf "$sel" | cut -d " " -f1)
@@ -98,8 +98,8 @@ menu() {
         e) emptyfilecheck || $EDITOR "$dir/$currfile";;
         l) emptyfilecheck || linkfiles;;
         f) emptyfilecheck || followlinks;;
-        d) emptyfilecheck || (deletenote && listfiles);;
-        a) listfiles;;
+        d) emptyfilecheck || (deletenote && selectfile);;
+        a) selectfile;;
         n) newfile;;
         q) exit;;
         *) wronginput "Please enter a valid choice!"; break;;
@@ -112,7 +112,7 @@ else
     dir="./"
 fi
 
-listfiles
+selectfile
 while true; do
     menu
 done
